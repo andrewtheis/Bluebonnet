@@ -20,7 +20,7 @@ public enum HTTPMethod: String {
 
 
 /// HTTP/1.1 status codes as defined by https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-public enum HTTPStatusCode: Int {
+public enum HTTPStatusCode: Int, Sendable {
     case unknown = 0 // Generic catchall, Not part of RFC spec
     
     case `continue` = 100
@@ -59,6 +59,7 @@ public enum HTTPStatusCode: Int {
     case requestedRangeNotSatisfiable = 416
     case expectationFailed = 417
     case unprocessableEntity = 422
+    case preconditionRequired = 428
     case tooManyRequests = 429
     case internalServerError = 500
     

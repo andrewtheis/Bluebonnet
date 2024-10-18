@@ -20,7 +20,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Bluebonnet"
+            name: "Bluebonnet",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
         )
     ]
 )

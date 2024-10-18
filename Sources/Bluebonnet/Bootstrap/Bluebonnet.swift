@@ -7,6 +7,7 @@ import os.log
 
 
 /// This type holds all global configuration options and miscellaneous variables.
+@MainActor
 public struct Bluebonnet {
     
     /// The `URLSesssion` to use. See `URLSession` for more info.

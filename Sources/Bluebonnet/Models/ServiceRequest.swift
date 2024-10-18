@@ -12,7 +12,7 @@ import os.log
 public struct Empty: Codable {
 }
 
-
+@MainActor
 public protocol ServiceRequest {
     
     /// The environment of the ``Service`` used in ``ServiceRequest/service`` parameter. This will be auto-defined by the compiler.

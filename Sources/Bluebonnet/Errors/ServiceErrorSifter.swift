@@ -9,6 +9,7 @@ import Foundation
  Register your ``ServiceErrorTransformer`` types and ``ServiceErrorHandler`` with this type.
  - Note: An error is sent to the registered ``ServiceErrorTransformer`` types first (if any), and then  the transformed (or original) error is sent to the registered ``ServiceErrorHandler`` types.
  */
+@MainActor
 public class ServiceErrorSifter {
     
     // MARK: Private
