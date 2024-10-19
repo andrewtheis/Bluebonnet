@@ -13,7 +13,7 @@ public class PolledRequest<SR: ServiceRequest> {
     private let interval: UInt64
     private let maxAttempts: Int
     private let request: SR
-    private var pollingTask: Task<SR.ServiceResponseContent?, Error>?
+    private var pollingTask: Task<SR.ServiceResponseContent, Error>?
     
     // MARK: Lifecycle
     
@@ -25,7 +25,7 @@ public class PolledRequest<SR: ServiceRequest> {
     
     // MARK: Actions
     
-    public func startAwaitingResponse() async throws -> SR.ServiceResponseContent? {
+    public func startAwaitingResponse() async throws -> SR.ServiceResponseContent {
         cancelPolling()
         pollingTask = Task {
             var attempts: Int = 0
@@ -45,7 +45,10 @@ public class PolledRequest<SR: ServiceRequest> {
                 try await Task.sleep(nanoseconds: interval * 1_000_000_000)
             }
         }
-        return try await pollingTask?.value
+        guard let pollingTask else {
+            throw BluebonnetError.polledRequestFailed
+        }
+        return try await pollingTask.value
     }
     
     public func cancelPolling() {
