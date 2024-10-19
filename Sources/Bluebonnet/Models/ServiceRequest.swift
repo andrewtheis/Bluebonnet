@@ -22,7 +22,7 @@ public protocol ServiceRequest {
     associatedtype Parameters: Encodable
     
     /// The type that the response's body should be decoded into.
-    associatedtype ServiceResponseContent: Decodable
+    associatedtype ServiceResponseContent: Decodable, Sendable
     
     /// The HTTP method to use for this request. See ``HTTPMethod`` for more info.
     var method: HTTPMethod { get }

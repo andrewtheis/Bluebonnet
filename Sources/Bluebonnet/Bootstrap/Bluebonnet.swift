@@ -18,8 +18,9 @@ public struct Bluebonnet {
 
 
 /// Errors specific to Bluebonnet.
-public enum BluebonnetError: Error {
+public enum BluebonnetError: Error, Sendable {
     case couldNotGenerateRequestURL
+    case polledRequestMaxAttemptsExceeded
     case receivedNonHTTPURLResponse
     case unexpectedlyReceivedEmptyResponseBody
     case unexpectedStatusCode(HTTPStatusCode)
@@ -30,6 +31,8 @@ extension BluebonnetError: LocalizedError {
         switch self {
         case .couldNotGenerateRequestURL:
             return "Could not generate request URL"
+        case .polledRequestMaxAttemptsExceeded:
+            return "Max attempts exceeded"
         case .receivedNonHTTPURLResponse:
             return "Received non-HTTP URL response"
         case .unexpectedlyReceivedEmptyResponseBody:
