@@ -88,8 +88,6 @@ public extension ServiceRequest {
                 throw sift(error, with: data)
             }
             
-            print(stringFromData(data))
-            
             return try decodeResponseContent(from: data, in: httpResponse, for: request)
         } catch {
             logError(error, from: request, response: nil)
